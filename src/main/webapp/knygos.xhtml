@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Knygos</title>
+</h:head>
+<h:body>
+    <h1>Knygos</h1>
+
+    <h:dataTable value="#{knygaController.visosKnygos}" var="knyga" border="1">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{knyga.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Pavadinimas</f:facet>
+            #{knyga.pavadinimas}
+        </h:column>
+        <h:column>
+            <f:facet name="header">ISBN</f:facet>
+            #{knyga.isbn}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Autorius</f:facet>
+            #{knyga.autorius.vardas} #{knyga.autorius.pavarde}
+        </h:column>
+    </h:dataTable>
+
+    <h2>Pridėti knygą</h2>
+    <h:form>
+        <h:outputLabel value="Pavadinimas: "/>
+        <h:inputText value="#{knygaController.naujas.pavadinimas}" required="true"/>
+        <br/>
+        <h:outputLabel value="ISBN: "/>
+        <h:inputText value="#{knygaController.naujas.isbn}"/>
+        <br/>
+        <h:outputLabel value="Autorius: "/>
+        <h:selectOneMenu value="#{knygaController.autoriusId}" required="true">
+            <f:selectItems value="#{knygaController.visiAutoriai}"
+                           var="autorius"
+                           itemValue="#{autorius.id}"
+                           itemLabel="#{autorius.vardas} #{autorius.pavarde}"/>
+        </h:selectOneMenu>
+        <br/>
+        <h:commandButton value="Pridėti" action="#{knygaController.prideti}"/>
+    </h:form>
+
+    <h:link value="Grįžti" outcome="index"/>
+</h:body>
+</html>
