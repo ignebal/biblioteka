@@ -9,7 +9,7 @@
         <result property="pavarde" column="PAVARDE"/>
         <collection property="knygos"
                     javaType="java.util.List"
-                    column="ID"
+                    column="{skaitytojasId=ID}"
                     select="lt.vu.mybatis.mappers.KnygaMapper.findBySkaitytojas"/>
     </resultMap>
 

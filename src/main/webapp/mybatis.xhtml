@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>MyBatis - Autoriai</title>
+</h:head>
+<h:body>
+    <h1>Autoriai (MyBatis)</h1>
+
+    <h:dataTable value="#{autoriusMyBatisController.visiAutoriai}" var="autorius" border="1">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            #{autorius.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Vardas</f:facet>
+            #{autorius.vardas}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Pavardė</f:facet>
+            #{autorius.pavarde}
+        </h:column>
+    </h:dataTable>
+
+    <h2>Pridėti autorių (MyBatis)</h2>
+    <h:form>
+        <h:outputLabel value="Vardas: "/>
+        <h:inputText value="#{autoriusMyBatisController.naujas.vardas}" required="true"/>
+        <br/>
+        <h:outputLabel value="Pavardė: "/>
+        <h:inputText value="#{autoriusMyBatisController.naujas.pavarde}" required="true"/>
+        <br/>
+        <h:commandButton value="Pridėti" action="#{autoriusMyBatisController.prideti}"/>
+    </h:form>
+
+    <h:link value="Grįžti" outcome="index"/>
+</h:body>
+</html>

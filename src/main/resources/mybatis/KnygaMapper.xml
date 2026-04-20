@@ -25,9 +25,9 @@
         VALUES (#{pavadinimas}, #{isbn}, #{autoriusId})
     </insert>
 
-    <select id="findBySkaitytojas" resultMap="KnygaResult">
+    <select id="findBySkaitytojas" parameterType="java.util.Map" resultMap="KnygaResult">
         SELECT k.* FROM KNYGA k
-                            INNER JOIN SKAITYTOJAS_KNYGA sk ON k.ID = sk.KNYGA_ID
+        INNER JOIN SKAITYTOJAS_KNYGA sk ON k.ID = sk.KNYGA_ID
         WHERE sk.SKAITYTOJAS_ID = #{skaitytojasId}
     </select>
 
