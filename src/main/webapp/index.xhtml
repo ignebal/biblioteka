@@ -5,14 +5,19 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
 <h:head>
     <title>Biblioteka</title>
+    <h:outputStylesheet name="dark-mode.css" />
 </h:head>
-<h:body>
+<h:body class="#{darkMode.themeClass}">
     <h1>Bibliotekos sistema</h1>
     <ul>
         <li><h:link value="Autoriai" outcome="autoriai"/></li>
-        <li><h:link value="Autoriai (MyBatis)" outcome="mybatis"/></li>
         <li><h:link value="Knygos" outcome="knygos"/></li>
         <li><h:link value="Skaitytojai" outcome="skaitytojai"/></li>
     </ul>
+    <h2>Dark Mode</h2>
+    <h:form>
+        <h:commandButton value="#{darkMode.enabled ? 'Light Mode' : 'Dark Mode'}"
+                         action="#{darkMode.toggle()}"/>
+    </h:form>
 </h:body>
 </html>

@@ -28,7 +28,9 @@
         <h:column>
             <f:facet name="header">Knygos</f:facet>
             <ui:repeat value="#{autorius.knygos}" var="knyga">
-                #{knyga.pavadinimas}&nbsp;
+                <h:link value="#{knyga.pavadinimas}" outcome="knygos">
+                    <f:param name="knygaId" value="#{knyga.id}"/>
+                </h:link>&nbsp;
             </ui:repeat>
         </h:column>
     </h:dataTable>
@@ -44,6 +46,6 @@
         <h:commandButton value="Pridėti" action="#{autoriusController.prideti}"/>
     </h:form>
 
-    <h:link value="Grįžti" outcome="index"/>
+    <h:link value="← Grįžti į pradžią" outcome="index"/>
 </h:body>
 </html>
