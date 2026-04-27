@@ -5,4 +5,8 @@
        https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd"
        bean-discovery-mode="annotated"
        version="3.0">
+
+    <alternatives>
+        <class>lt.vu.dao.AutoriusMyBatisDAO</class>
+    </alternatives>
 </beans>

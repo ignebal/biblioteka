@@ -1,6 +1,7 @@
 package lt.vu.dao;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Alternative;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import lt.vu.mybatis.mappers.AutoriusMapper;
@@ -8,6 +9,7 @@ import lt.vu.mybatis.model.AutoriusMyBatis;
 import java.util.List;
 
 @ApplicationScoped
+@Alternative
 public class AutoriusMyBatisDAO {
 
     @Inject
