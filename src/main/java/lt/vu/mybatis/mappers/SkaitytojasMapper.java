@@ -9,4 +9,7 @@ public interface SkaitytojasMapper {
     List<SkaitytojasMyBatis> loadAll();
     SkaitytojasMyBatis findById(Long id);
     void insert(SkaitytojasMyBatis skaitytojas);
+
+    void insertSkaitytojasKnyga(Long skaitytojasId, Long knygaId);
+    void deleteSkaitytojasKnygaByReader(Long skaitytojasId);
 }

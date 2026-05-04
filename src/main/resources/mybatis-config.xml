@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <mappers>
-        <mapper resource="mybatis/AutoriusMapper.xml"/>
-        <mapper resource="mybatis/KnygaMapper.xml"/>
-        <mapper resource="mybatis/SkaitytojasMapper.xml"/>
+        <mapper resource="lt/vu/biblioteka/mybatis/dao/AutoriusMapper.xml"/>
+        <mapper resource="lt/vu/biblioteka/mybatis/dao/KnygaMapper.xml"/>
+        <mapper resource="lt/vu/biblioteka/mybatis/dao/SkaitytojasMapper.xml"/>
     </mappers>
 </configuration>

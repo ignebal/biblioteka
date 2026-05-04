@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="lt.vu.mybatis.mappers.SkaitytojasMapper">
+<mapper namespace="lt.vu.mybatis.mappers.AutoriusMapper">
 
-    <resultMap id="SkaitytojasResult" type="lt.vu.mybatis.model.SkaitytojasMyBatis">
+    <resultMap id="AutoriusResult" type="lt.vu.mybatis.model.AutoriusMyBatis">
         <id property="id" column="ID"/>
         <result property="vardas" column="VARDAS"/>
         <result property="pavarde" column="PAVARDE"/>
         <collection property="knygos"
                     javaType="java.util.List"
-                    column="{skaitytojasId=ID}"
-                    select="lt.vu.mybatis.mappers.KnygaMapper.findBySkaitytojas"/>
+                    column="{autoriusId=ID}"
+                    select="lt.vu.mybatis.mappers.KnygaMapper.findByAutorius"/>
     </resultMap>
 
-    <select id="loadAll" resultMap="SkaitytojasResult">
-        SELECT * FROM SKAITYTOJAS
+    <select id="loadAll" resultMap="AutoriusResult">
+        SELECT * FROM AUTORIUS
     </select>
 
-    <select id="findById" resultMap="SkaitytojasResult">
-        SELECT * FROM SKAITYTOJAS WHERE ID = #{id}
+    <select id="findById" resultMap="AutoriusResult">
+        SELECT * FROM AUTORIUS WHERE ID = #{id}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO SKAITYTOJAS (VARDAS, PAVARDE)
+        INSERT INTO AUTORIUS (VARDAS, PAVARDE)
         VALUES (#{vardas}, #{pavarde})
     </insert>
 
 </mapper>
+

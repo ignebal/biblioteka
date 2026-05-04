@@ -3,7 +3,7 @@ package lt.vu.usecases;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import lt.vu.dao.AutoriusDAO_JPA;
+import lt.vu.persistence.AutoriusDAO;
 import lt.vu.entities.Autorius;
 import java.util.List;
 
@@ -12,12 +12,12 @@ import java.util.List;
 public class AutoriusController {
 
     @Inject
-    private AutoriusDAO_JPA autoriusDAOJPA;
+    private AutoriusDAO autoriusDAO;
 
     private Autorius naujas = new Autorius();
 
     public List<Autorius> getVisiAutoriai() {
-        return autoriusDAOJPA.loadAll();
+        return autoriusDAO.loadAll();
     }
 
     public Autorius getNaujas() {
@@ -25,7 +25,7 @@ public class AutoriusController {
     }
 
     public String prideti() {
-        autoriusDAOJPA.save(naujas);
+        autoriusDAO.save(naujas);
         naujas = new Autorius();
         return "autoriai?faces-redirect=true";
     }

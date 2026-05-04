@@ -1,13 +1,11 @@
 package lt.vu.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "SKAITYTOJAS")
-@Getter @Setter
 public class Skaitytojas {
 
     @Id
@@ -26,5 +24,23 @@ public class Skaitytojas {
             joinColumns = @JoinColumn(name = "SKAITYTOJAS_ID"),
             inverseJoinColumns = @JoinColumn(name = "KNYGA_ID")
     )
-    private List<Knyga> knygos;
+    private List<Knyga> knygos = new ArrayList<>();
+
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getVardas() { return vardas; }
+    public void setVardas(String vardas) { this.vardas = vardas; }
+
+    public String getPavarde() { return pavarde; }
+    public void setPavarde(String pavarde) { this.pavarde = pavarde; }
+
+    public void setKnygos(List<Knyga> knygos) {
+        this.knygos = knygos;
+    }
+
+    public List<Knyga> getKnygos() {
+        return knygos;
+    }
 }

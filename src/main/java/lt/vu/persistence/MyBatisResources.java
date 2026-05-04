@@ -35,16 +35,16 @@ public class MyBatisResources {
         Configuration configuration = new Configuration(environment);
 
         try {
-            // Įkeliame XML mapper failus
-            configuration.addMappers("lt.vu.mybatis.mappers");
+            // Add mapper interfaces
+            configuration.addMapper(AutoriusMapper.class);
+            configuration.addMapper(KnygaMapper.class);
+            configuration.addMapper(SkaitytojasMapper.class);
 
-            // Taip pat įkeliame XML failus tiesiogiai
-            org.apache.ibatis.builder.xml.XMLMapperBuilder mapperParser;
-
+            // Load XML mapper files
             String[] mappers = {
-                    "mybatis/AutoriusMapper.xml",
-                    "mybatis/KnygaMapper.xml",
-                    "mybatis/SkaitytojasMapper.xml"
+                    "lt/vu/biblioteka/mybatis/dao/AutoriusMapper.xml",
+                    "lt/vu/biblioteka/mybatis/dao/KnygaMapper.xml",
+                    "lt/vu/biblioteka/mybatis/dao/SkaitytojasMapper.xml"
             };
 
             for (String mapper : mappers) {
@@ -53,9 +53,12 @@ public class MyBatisResources {
                                      .getContextClassLoader()
                                      .getResourceAsStream(mapper)) {
                     if (is != null) {
-                        mapperParser = new org.apache.ibatis.builder.xml.XMLMapperBuilder(
-                                is, configuration, mapper, configuration.getSqlFragments());
+                        org.apache.ibatis.builder.xml.XMLMapperBuilder mapperParser =
+                                new org.apache.ibatis.builder.xml.XMLMapperBuilder(
+                                        is, configuration, mapper, configuration.getSqlFragments());
                         mapperParser.parse();
+                    } else {
+                        System.err.println("WARNING: Could not find mapper file: " + mapper);
                     }
                 }
             }

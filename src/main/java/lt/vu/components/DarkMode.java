@@ -1,5 +1,6 @@
 package lt.vu.components;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
@@ -7,7 +8,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 
 @Named
-@SessionScoped
+@ApplicationScoped
 public class DarkMode implements Serializable {
 
     private boolean enabled = false;

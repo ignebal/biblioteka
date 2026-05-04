@@ -3,10 +3,11 @@ package lt.vu.usecases;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import lt.vu.dao.KnygaDAO_JPA;
-import lt.vu.dao.SkaitytojasDAO_JPA;
+import lt.vu.persistence.SkaitytojasDAO;
+import lt.vu.persistence.KnygaDAO;
 import lt.vu.entities.Knyga;
 import lt.vu.entities.Skaitytojas;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named
@@ -14,20 +15,20 @@ import java.util.List;
 public class SkaitytojasController {
 
     @Inject
-    private SkaitytojasDAO_JPA skaitytojasDAOJPA;
+    private SkaitytojasDAO skaitytojasDAO;
 
     @Inject
-    private KnygaDAO_JPA knygaDAOJPA;
+    private KnygaDAO knygaDAO;
 
     private Skaitytojas naujas = new Skaitytojas();
-    private List<Long> pasirinktoKnygosId;
+    private List<Long> pasirinktoKnygosId = new ArrayList<>();
 
     public List<Skaitytojas> getVisiSkaitytojai() {
-        return skaitytojasDAOJPA.loadAll();
+        return skaitytojasDAO.loadAll();
     }
 
     public List<Knyga> getVisosKnygos() {
-        return knygaDAOJPA.loadAll();
+        return knygaDAO.loadAll();
     }
 
     public Skaitytojas getNaujas() {
@@ -43,14 +44,22 @@ public class SkaitytojasController {
     }
 
     public String prideti() {
-        if (pasirinktoKnygosId != null) {
+        if (!pasirinktoKnygosId.isEmpty()) {
             List<Knyga> knygos = pasirinktoKnygosId.stream()
-                    .map(knygaDAOJPA::findById)
+                    .map(knygaDAO::findById)
                     .toList();
             naujas.setKnygos(knygos);
+
+
+            for (Knyga knyga : knygos) {
+                if (knyga != null && !knyga.getSkaitytojai().contains(naujas)) {
+                    knyga.getSkaitytojai().add(naujas);
+                }
+            }
         }
-        skaitytojasDAOJPA.save(naujas);
+        skaitytojasDAO.save(naujas);
         naujas = new Skaitytojas();
+        pasirinktoKnygosId = new ArrayList<>();  // Reset selected books
         return "skaitytojai?faces-redirect=true";
     }
 }

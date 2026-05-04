@@ -3,8 +3,8 @@ package lt.vu.usecases;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import lt.vu.dao.AutoriusDAO_JPA;
-import lt.vu.dao.KnygaDAO_JPA;
+import lt.vu.persistence.AutoriusDAO;
+import lt.vu.persistence.KnygaDAO;
 import lt.vu.entities.Autorius;
 import lt.vu.entities.Knyga;
 import java.util.List;
@@ -14,20 +14,20 @@ import java.util.List;
 public class KnygaController {
 
     @Inject
-    private KnygaDAO_JPA knygaDAOJPA;
+    private KnygaDAO knygaDAO;
 
     @Inject
-    private AutoriusDAO_JPA autoriusDAOJPA;
+    private AutoriusDAO autoriusDAO;
 
     private Knyga naujas = new Knyga();
     private Long autoriusId;
 
     public List<Knyga> getVisosKnygos() {
-        return knygaDAOJPA.loadAll();
+        return knygaDAO.loadAll();
     }
 
     public List<Autorius> getVisiAutoriai() {
-        return autoriusDAOJPA.loadAll();
+        return autoriusDAO.loadAll();
     }
 
     public Knyga getNaujas() {
@@ -44,10 +44,13 @@ public class KnygaController {
 
     public String prideti() {
         if (autoriusId != null) {
-            Autorius autorius = autoriusDAOJPA.findById(autoriusId);
+            Autorius autorius = autoriusDAO.findById(autoriusId);
             naujas.setAutorius(autorius);
+            if (autorius != null && !autorius.getKnygos().contains(naujas)) {
+                autorius.getKnygos().add(naujas);
+            }
         }
-        knygaDAOJPA.save(naujas);
+        knygaDAO.save(naujas);
         naujas = new Knyga();
         return "knygos?faces-redirect=true";
     }

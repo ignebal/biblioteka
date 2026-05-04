@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lt.vu.mybatis.mappers.SkaitytojasMapper">
+
+    <resultMap id="SkaitytojasResult" type="lt.vu.mybatis.model.SkaitytojasMyBatis">
+        <id property="id" column="ID"/>
+        <result property="vardas" column="VARDAS"/>
+        <result property="pavarde" column="PAVARDE"/>
+        <!-- Fetch books for this reader from the join table -->
+        <collection property="knygos"
+                    javaType="java.util.List"
+                    column="{skaitytojasId=ID}"
+                    select="lt.vu.mybatis.mappers.KnygaMapper.findBySkaitytojas"/>
+    </resultMap>
+
+    <select id="loadAll" resultMap="SkaitytojasResult">
+        SELECT * FROM SKAITYTOJAS
+    </select>
+
+    <select id="findById" resultMap="SkaitytojasResult">
+        SELECT * FROM SKAITYTOJAS WHERE ID = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO SKAITYTOJAS (VARDAS, PAVARDE)
+        VALUES (#{vardas}, #{pavarde})
+    </insert>
+
+    <insert id="insertSkaitytojasKnyga">
+        INSERT INTO SKAITYTOJAS_KNYGA (SKAITYTOJAS_ID, KNYGA_ID)
+        VALUES (#{param1}, #{param2})
+    </insert>
+
+    <delete id="deleteSkaitytojasKnygaByReader">
+        DELETE FROM SKAITYTOJAS_KNYGA
+        WHERE SKAITYTOJAS_ID = #{skaitytojasId}
+    </delete>
+
+</mapper>

@@ -10,4 +10,5 @@ public interface KnygaMapper {
     KnygaMyBatis findById(Long id);
     void insert(KnygaMyBatis knyga);
     List<KnygaMyBatis> findBySkaitytojas(Long skaitytojasId);
+    List<KnygaMyBatis> findByAutorius(Long autoriusId);
 }

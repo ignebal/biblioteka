@@ -11,6 +11,11 @@
 <h:body>
     <h1>Knygos</h1>
 
+    <h:link value="Autoriai" outcome="autoriai" style="margin-right: 15px;"/> |
+    <h:link value="Skaitytojai" outcome="skaitytojai" style="margin-left: 15px; margin-right: 15px;"/> |
+    <h:link value="Pradžia" outcome="index" style="margin-left: 15px;"/>
+    <br/><br/>
+
     <h:dataTable value="#{knygaController.visosKnygos}" var="knyga" border="1">
         <h:column>
             <f:facet name="header">ID</f:facet>
@@ -51,6 +56,7 @@
         <h:commandButton value="Pridėti" action="#{knygaController.prideti}"/>
     </h:form>
 
-    <h:link value="← Grįžti į pradžią" outcome="index"/>
+    <hr/>
+    <h:link value="Grįžti į pradžią" outcome="index"/>
 </h:body>
 </html>

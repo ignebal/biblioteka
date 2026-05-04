@@ -31,4 +31,11 @@
         WHERE sk.SKAITYTOJAS_ID = #{skaitytojasId}
     </select>
 
+    <select id="findByAutorius" resultMap="KnygaResult">
+        SELECT * FROM KNYGA
+        WHERE AUTORIUS_ID = #{autoriusId}
+    </select>
+
+
 </mapper>
+

@@ -13,10 +13,8 @@
         <class>lt.vu.entities.Skaitytojas</class>
 
         <properties>
-            <!-- Automatiškai sukuria/atnaujina lenteles pagal esybes -->
             <property name="jakarta.persistence.schema-generation.database.action"
                       value="drop-and-create"/>
-            <!-- Rodo SQL žurnaluose -->
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
         </properties>
