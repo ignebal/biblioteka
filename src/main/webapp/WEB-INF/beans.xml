@@ -5,9 +5,9 @@
        https://jakarta.ee/xml/ns/jakartaee/beans_3_0.xsd"
        bean-discovery-mode="annotated"
        version="3.0">
-    <!-- <alternatives>
+    <alternatives>
      <class>lt.vu.persistence.AutoriusDAOMyBatis</class>
      <class>lt.vu.persistence.KnygaDAOMyBatis</class>
      <class>lt.vu.persistence.SkaitytojasDAOMyBatis</class>
-   </alternatives> -->
+   </alternatives>
 </beans>

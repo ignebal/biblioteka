@@ -14,10 +14,11 @@
         <li><h:link value="Knygos" outcome="knygos"/></li>
         <li><h:link value="Skaitytojai" outcome="skaitytojai"/></li>
     </ul>
-    <h2>Dark Mode</h2>
+    <h2>Theme</h2>
     <h:form>
-        <h:commandButton value="#{darkMode.enabled ? 'Light Mode' : 'Dark Mode'}"
+        <h:commandButton value="#{darkMode.nextThemeLabel}"
                          action="#{darkMode.toggle()}"/>
+        <h:outputText value = "(Current: #{darkMode.currentThemeLabel})"/>
     </h:form>
 </h:body>
 </html>

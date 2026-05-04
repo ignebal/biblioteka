@@ -1,13 +1,51 @@
+body.light-mode {
+    background-color: #ffffff;
+    color: #000000;  /* ✅ FIXED typo */
+}
+
 body.dark-mode {
     background-color: #181818;
     color: #f1f1f1;
 }
-.table-dark th, .table-dark td {
-    background-color: #232323;
-    color: #f1f1f1;
+
+body.contrast-mode {
+    background-color: #000000;
+    color: #ffff00;
 }
-button, input, select {
+
+body.light-mode button,
+body.light-mode input,
+body.light-mode select {
+    background-color: #f0f0f0;
+    color: #000000;
+    border: 1px solid #cccccc;
+}
+
+body.dark-mode button,
+body.dark-mode input,
+body.dark-mode select {
     background-color: #232323;
     color: #f1f1f1;
     border: 1px solid #444;
+}
+
+body.contrast-mode button,
+body.contrast-mode input,
+body.contrast-mode select {
+    background-color: #000000;
+    color: #ffff00;
+    border: 2px solid #ffff00;
+}
+
+body.dark-mode .table-dark th,
+body.dark-mode .table-dark td {
+    background-color: #232323;
+    color: #f1f1f1;
+}
+
+body.contrast-mode .table-dark th,
+body.contrast-mode .table-dark td {
+    background-color: #000000;
+    color: #ffff00;
+    border: 1px solid #ffff00;
 }
